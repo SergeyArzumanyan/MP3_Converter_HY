@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/mp3-converter-hy",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
