@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from "@Core/services";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mp3-converter';
+  constructor(public configService: ConfigService) {}
 }

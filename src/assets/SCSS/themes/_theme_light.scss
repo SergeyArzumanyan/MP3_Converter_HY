@@ -1,0 +1,19 @@
+@import '../variables/colors/_colors_light';
+@import '../variables/_main_variables';
+@import './_main_themes';
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --text: #{$txt};
+  --bg: #{$bg};
+  --accent: #{$accent};
+}
+
+::-webkit-scrollbar-thumb {
+  background: $bg;
+}
+
+::selection {
+  background: $accent;
+}
