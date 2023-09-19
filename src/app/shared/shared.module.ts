@@ -44,6 +44,7 @@ import { TranslateModule } from "@ngx-translate/core";
     TranslateModule,
   ],
   exports: [
+    CommonModule,
     PasswordModule,
     ButtonModule,
     NgOptimizedImage,
@@ -58,7 +59,11 @@ import { TranslateModule } from "@ngx-translate/core";
     KeyFilterModule,
     TooltipModule,
     InputMaskModule,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
     PanelMenuModule,
+    TranslateModule,
   ]
 })
 export class SharedModule {}

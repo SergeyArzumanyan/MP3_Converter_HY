@@ -1,0 +1,60 @@
+//  Primary Button Start
+
+button[type="button"].primary-button {
+  background: $primary !important;
+  color: $text !important;
+  font-size: $Medium;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
+  border: none;
+}
+
+button[type="button"].primary-button:hover {
+  background: $primary !important;
+  color: $text !important;
+  border: none;
+}
+
+button[type="button"].primary-button:focus {
+  box-shadow: 0 0 0 0.2rem $accent !important;
+}
+
+button[type="button"].primary-button:focus-visible {
+  box-shadow: 0 0 0 0.2rem $accent !important;
+}
+
+//  Primary Button End
+
+
+//  Secondary Button Start
+
+button[type="button"].secondary-button {
+  background: $secondary !important;
+  color: $text !important;
+  font-size: $Medium;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
+  border: 1px solid $accent;
+}
+
+button[type="button"].secondary-button:hover {
+  background: $secondary !important;
+  color: $text !important;
+  border: 1px solid $accent;
+}
+
+button[type="button"].secondary-button:focus {
+  box-shadow: 0 0 0 0.2rem $primary !important;
+}
+
+button[type="button"].secondary-button:focus-visible {
+  box-shadow: 0 0 0 0.2rem $primary !important;
+}
+
+//  Secondary Button End
+
+
+@media (max-width: 900px) {
+  button[type="button"].primary-button,
+  button[type="button"].secondary-button {
+    font-size: $Small !important;
+  }
+}

@@ -1,0 +1,93 @@
+<section class="main-content-wrapper w-full h-full">
+  <header>
+    <h1 class="home-page-header text-center">
+      {{ 'HomePageHeader' | translate }}
+    </h1>
+  </header>
+  <main>
+    <form [formGroup]="urlForm" (ngSubmit)="convertToMP3()">
+      <fieldset class="flex flex-column gap-2 justify-content-center align-items-center">
+        <section class="w-full flex gap-2 justify-content-center align-items-center">
+          <div class="url-input-wrapper">
+            <input type="text"
+                   [placeholder]="'UrlInputPlaceholder' | translate"
+                   pInputText
+                   formControlName="url"
+                   class="url-input"
+                   [ngClass]="{
+                   'ng-dirty ng-invalid': urlForm.controls.url.invalid && urlForm.controls.url.touched,
+                   'url-input-dirty': urlForm.controls.url.value
+                   }"
+                   (input)="subscribeToInputChanges()"
+            >
+            <ng-container *ngIf="urlForm.controls.url.value">
+              <i class="url-reset-icon fa-solid fa-xmark icon-md"
+                 (click)="reset()"
+              >
+              </i>
+            </ng-container>
+          </div>
+          <ng-container *ngIf="!convertedVideo; else downloadBlock">
+            <button
+              pButton
+              pRipple
+              type="button"
+              [label]="'Convert' | translate"
+              class="primary-button"
+              (click)="convertToMP3()"
+            >
+            </button>
+          </ng-container>
+          <ng-template #downloadBlock>
+            <button
+              pButton
+              pRipple
+              type="button"
+              [label]="'Reset' | translate"
+              class="secondary-button"
+              (click)="reset()"
+            >
+            </button>
+          </ng-template>
+        </section>
+        <ng-container *ngIf="urlForm.controls.url.hasError('required') && urlForm.controls.url.touched">
+          <small class="error-message p-error">
+            {{ 'EmptyInputErrorMessage' | translate }}
+          </small>
+        </ng-container>
+        <ng-container *ngIf="urlForm.controls.url.hasError('isNotYoutubeUrl') && urlForm.controls.url.touched">
+          <small class="error-message p-error">
+            {{ 'InvalidIURL' | translate }}
+          </small>
+        </ng-container>
+      </fieldset>
+    </form>
+
+    <section class="mp3-file-wrapper w-full h-full flex gap-3 flex-column justify-content-center align-items-center">
+      <ng-container *ngIf="convertedVideo; else LoadingBlock">
+        <h2 class="file-title">
+          {{ convertedVideo?.title }}
+        </h2>
+        <button
+          pButton
+          pRipple
+          type="button"
+          [label]="'Download' | translate"
+          class="primary-button"
+          (click)="downloadMP3()"
+        >
+        </button>
+      </ng-container>
+      <ng-template #LoadingBlock>
+        <ng-container *ngIf="pending">
+          <section class="loading-wrapper flex gap-2 align-items-center mt-4">
+            <span class="loading-text">
+              {{ 'Loading' | translate }}
+            </span>
+            <i class="loading-icon fa-solid fa-circle-notch pi-spin icon-lg"></i>
+          </section>
+        </ng-container>
+      </ng-template>
+    </section>
+  </main>
+</section>

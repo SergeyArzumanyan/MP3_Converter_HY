@@ -17,7 +17,7 @@ import { MessageService } from "primeng/api";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { environment } from "../environments/environment";
+import { environment } from "@Environments/environment";
 
 import { CoreModule } from "@Core/core.module";
 import { SharedModule } from "@Shared/shared.module";

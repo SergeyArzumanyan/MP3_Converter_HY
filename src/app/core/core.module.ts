@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderComponent, FooterComponent, NotfoundComponent } from './components';
+import { SharedModule } from "@Shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { HeaderComponent, FooterComponent, NotfoundComponent } from './component
     HeaderComponent,
     NotfoundComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+    ]
 })
 export class CoreModule {
 }

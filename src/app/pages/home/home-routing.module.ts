@@ -4,12 +4,12 @@ import { HomeComponent } from "@Pages/home/containers";
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
-    path: '',
-    redirectTo: 'home',
+    path: '**',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

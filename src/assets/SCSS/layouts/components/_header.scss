@@ -1,0 +1,14 @@
+.header-wrapper {
+  .image-caption {
+    font-size: $Medium;
+    color: $text;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-wrapper {
+    .image-caption {
+      font-size: $Small !important;
+    }
+  }
+}

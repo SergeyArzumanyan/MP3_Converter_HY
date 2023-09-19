@@ -1,0 +1,37 @@
+.main-content-wrapper {
+  .home-page-header {
+    line-height: 2;
+    transition: color 0.2s;
+    font-size: $Larger;
+    color: $text;
+  }
+
+  .mp3-file-wrapper {
+    .file-title {
+      font-size: $Medium;
+      color: $text;
+    }
+  }
+}
+
+.loading-wrapper {
+  .loading-text {
+    color: $text;
+    font-size: $Small;
+    transition: color 0.2s;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-content-wrapper {
+    .home-page-header {
+      font-size: $Large !important;
+    }
+  }
+
+  .mp3-file-wrapper {
+    .file-title {
+      font-size: $Small !important;
+    }
+  }
+}

@@ -24,6 +24,7 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "@Environments/*": ["environments/*"],
       "@Components/*": ["app/components/*"],
       "@Pages/*": ["app/pages/*"],
       "@Shared/*": ["app/shared/*"],

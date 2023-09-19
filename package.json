@@ -26,6 +26,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "firebase": "^10.3.1",
     "normalize.css": "^8.0.1",
+    "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^16.3.1",
     "rxjs": "~7.8.0",

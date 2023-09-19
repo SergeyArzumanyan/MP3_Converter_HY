@@ -1,3 +1,11 @@
 {
-
+  "LogoHeader": "Youtube To MP3",
+  "HomePageHeader": "Youtube To MP3 Converter",
+  "Convert": "Convert",
+  "Download": "Download",
+  "Reset": "Reset",
+  "EmptyInputErrorMessage": "Enter The Link",
+  "InvalidIURL": "Incorrect Link Format",
+  "Loading": "Loading",
+  "UrlInputPlaceholder": "Place Link Here..."
 }

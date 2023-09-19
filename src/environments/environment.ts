@@ -1,5 +1,7 @@
 export const environment =  {
   production: "false",
+  RapidApiKey: "09fb1eb741msh65a076b10f070d3p1b6e36jsn28718d88bf95",
+  RapidApiHost: 'https://youtube-mp36.p.rapidapi.com/dl',
   firebase: {
     apiKey: "AIzaSyA1ngQACa0r27tF8iVuXvwT8Pr5elfWUFc",
     authDomain: "mp3-converter-hy-stg.firebaseapp.com",
@@ -12,6 +14,8 @@ export const environment =  {
 
 // export const environment =  {
 //   production: "true",
+//   RapidApiKey: "09fb1eb741msh65a076b10f070d3p1b6e36jsn28718d88bf95",
+//   RapidApiHost: 'https://youtube-mp36.p.rapidapi.com/dl',
 //   firebase: {
 //     apiKey: "AIzaSyDnDbbyQTK12uqXuj5Sy9I9xMuNOPBTMNg",
 //     authDomain: "mp3-converter-hy.firebaseapp.com",

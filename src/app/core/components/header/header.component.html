@@ -1,0 +1,22 @@
+<section class="header-wrapper w-full flex justify-content-between align-items-center py-2 px-8">
+  <figure>
+    <img class="logo-image" src="/favicon.ico" alt="Headphones Logo">
+    <figcaption class="image-caption">
+      {{ 'LogoHeader' | translate }}
+    </figcaption>
+  </figure>
+
+  <fieldset>
+    <button type="button"
+            pButton
+            pRipple
+            class="theme-switcher secondary-button flex justify-content-center align-items-center"
+            (click)="configService.changeColorScheme()"
+    >
+      <i class="fa-solid icon-sm"
+         [class]="configService.colorScheme === 'light' ? 'fa-sun' : 'fa-moon'"
+      >
+      </i>
+    </button>
+  </fieldset>
+</section>
