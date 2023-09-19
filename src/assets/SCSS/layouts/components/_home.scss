@@ -8,6 +8,10 @@
 
   .mp3-file-wrapper {
     .file-title {
+      max-width: 300px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      transition: color 0.2s;
       font-size: $Medium;
       color: $text;
     }

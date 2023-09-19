@@ -40,6 +40,7 @@ button[type=button].primary-button {
   font-size: 16px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
   border: none;
+  font-weight: 400;
 }
 
 button[type=button].primary-button:hover {
@@ -62,6 +63,7 @@ button[type=button].secondary-button {
   font-size: 16px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
   border: 1px solid #9c945d;
+  font-weight: 400;
 }
 
 button[type=button].secondary-button:hover {
@@ -131,6 +133,10 @@ input[type=text]:focus-visible {
   color: #ecdfe1;
 }
 .main-content-wrapper .mp3-file-wrapper .file-title {
+  max-width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: color 0.2s;
   font-size: 16px;
   color: #ecdfe1;
 }

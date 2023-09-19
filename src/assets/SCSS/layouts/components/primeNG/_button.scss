@@ -6,6 +6,7 @@ button[type="button"].primary-button {
   font-size: $Medium;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
   border: none;
+  font-weight: 400;
 }
 
 button[type="button"].primary-button:hover {
@@ -33,6 +34,7 @@ button[type="button"].secondary-button {
   font-size: $Medium;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
   border: 1px solid $accent;
+  font-weight: 400;
 }
 
 button[type="button"].secondary-button:hover {

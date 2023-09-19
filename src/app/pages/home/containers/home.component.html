@@ -65,7 +65,10 @@
 
     <section class="mp3-file-wrapper w-full h-full flex gap-3 flex-column justify-content-center align-items-center">
       <ng-container *ngIf="convertedVideo; else LoadingBlock">
-        <h2 class="file-title">
+        <h2 class="file-title text-center"
+            [pTooltip]="convertedVideo?.title"
+            tooltipPosition="top"
+        >
           {{ convertedVideo?.title }}
         </h2>
         <button

@@ -17,6 +17,7 @@ import { KeyFilterModule } from "primeng/keyfilter";
 import { TooltipModule } from "primeng/tooltip";
 import { InputMaskModule } from "primeng/inputmask";
 import {PanelMenuModule} from "primeng/panelmenu";
+
 import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
