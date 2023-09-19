@@ -5,13 +5,13 @@
 :root {
   --primary: #{$primary};
   --secondary: #{$secondary};
-  --text: #{$txt};
-  --bg: #{$bg};
+  --text: #{$text};
+  --background: #{$background};
   --accent: #{$accent};
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $bg;
+  background: $background;
 }
 
 ::selection {

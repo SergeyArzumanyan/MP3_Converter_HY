@@ -1,0 +1,28 @@
+.url-input-wrapper {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+
+  .url-input {
+    min-width: 220px;
+    width: 100%;
+    height: 40px;
+    padding-inline-end: 0;
+  }
+
+  .url-input-dirty {
+    padding-inline-end: 35px;
+  }
+
+  .url-reset-icon {
+    position: absolute;
+    cursor: pointer;
+    top: 13px;
+    right: 13px;
+  }
+}
+
+.primary-button, .secondary-button {
+  height: 40px;
+}
+
