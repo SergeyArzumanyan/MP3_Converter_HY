@@ -4,7 +4,7 @@
     "prod": "mp3-converter-hy"
   },
   "targets": {
-    "mp3-converter-prod": {
+    "mp3-converter-hy": {
       "hosting": {
         "mp3-converter-prod": [
           "mp3-converter-prod"
