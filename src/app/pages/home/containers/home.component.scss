@@ -1,3 +1,28 @@
+.main-content-wrapper {
+  .home-page-header {
+    line-height: 2;
+    transition: color 0.2s;
+    color: var(--text);
+  }
+
+  .mp3-file-wrapper {
+    .file-title {
+      max-width: 300px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      transition: color 0.2s;
+      color: var(--text);
+    }
+  }
+}
+
+.loading-wrapper {
+  .loading-text {
+    color: var(--text);
+    transition: color 0.2s;
+  }
+}
+
 .url-input-wrapper {
   flex: 1;
   max-width: 400px;
@@ -25,4 +50,3 @@
 .primary-button, .secondary-button {
   height: 40px;
 }
-

@@ -1,0 +1,54 @@
+@import '../../node_modules/primeflex/primeflex.css';
+@import "./fonts/fonts";
+@import "./prime-ng/prime-ng";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: var(--font-family);
+  color: var(--text);
+  background: var(--background);
+  transition: background 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  zoom: 1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--background);
+}
+
+::selection {
+  background: var(--accent);
+}
+
+.layout-container {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+fieldset {
+  border: none;
+}

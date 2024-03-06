@@ -6,52 +6,66 @@ import { BehaviorSubject } from "rxjs";
 })
 export class ConfigService {
 
-  public colorScheme: string = localStorage.getItem('selectedTheme') || 'light';
-  public colorScheme$: BehaviorSubject<string> = new BehaviorSubject<string>(this.colorScheme);
+  private systemDefaultTheme: string = this.themeInitialValue;
+  public Theme: string = this.systemDefaultTheme;
+  public Theme$: BehaviorSubject<string> = new BehaviorSubject<string>(this.Theme);
 
   constructor() {
-    this.addLinksToDocument();
-    if (!localStorage.getItem('selectedTheme')) {
-      localStorage.setItem('selectedTheme', this.colorScheme);
+    /** @desc Listens to system default theme changes. */
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener(
+        'change',
+        (e: MediaQueryListEvent) => {
+          this.systemDefaultTheme = e.matches ? "dark" : "light";
+        }
+      );
+
+    this.changeTheme(this.Theme);
+  }
+
+  get themeInitialValue(): string {
+    const isSystemDark: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isSystemDark ? 'dark' : 'light'
+  }
+
+  private toggleTheme(): void {
+    this.Theme = this.Theme === 'light' ? 'dark' : 'light';
+    this.Theme$.next(this.Theme);
+  }
+
+  public changeTheme(theme?: string): void {
+    if (!theme) {
+      this.toggleTheme();
     }
+
+    this.changeCSSFilePath('theme', this.Theme + '-theme.css');
+    this.setHTMLTheme();
   }
 
-  private setColorSchemeStates(): void {
-    this.colorScheme = this.colorScheme === 'light' ? 'dark' : 'light';
-    this.colorScheme$.next(this.colorScheme);
-    localStorage.setItem('selectedTheme', this.colorScheme);
+  public applyUserThemeSettings(Theme: string): void {
+    this.Theme = Theme ? Theme : this.themeInitialValue;
+    this.Theme$.next(this.Theme);
+    this.changeTheme(this.Theme);
   }
 
-  public changeColorScheme(): void {
-    this.setColorSchemeStates();
-    this.addLinksToDocument();
+  private setHTMLTheme(): void {
+    document.documentElement.style.colorScheme = this.Theme;
   }
 
-  private addLinksToDocument(): void {
-    this.addOrReplaceLink('layout-css', 'layouts', `layout-${this.colorScheme}.css`);
-    this.addOrReplaceLink('theme-css', 'themes', `theme-${this.colorScheme}.css`);
-    this.setColorSchemeOfHTML();
+  /** @desc Changes filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
+  private changeCSSFilePath(id: string, cssFileName: string): void {
+    const element: HTMLElement | null = document.getElementById(id);
+
+    const cssFilePath: string[] = element.getAttribute('href').split('/');
+    cssFilePath[cssFilePath.length - 1] = cssFileName;
+
+    const newURL = cssFilePath.join('/');
+
+    this.replaceLink(element, newURL);
   }
 
-  private addOrReplaceLink(id: string, styleSheetPath: string, fileName: string): void {
-    if (!document.getElementById(id)) {
-      const linkElement: HTMLLinkElement = document.createElement('link');
-
-      linkElement.id = id;
-      linkElement.rel = 'stylesheet'
-      linkElement.type = 'text/css';
-      linkElement.href = `assets/${styleSheetPath}/${fileName}`;
-
-      document.querySelector('head')!.appendChild(linkElement);
-    } else {
-      const existingLinkElement: any = document.getElementById(id);
-
-      existingLinkElement.href = `assets/${styleSheetPath}/${fileName}`;
-    }
+  /** @desc Replaces filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
+  private replaceLink(linkElement: any, href: string): void {
+    linkElement.href = href;
   }
-
-  private setColorSchemeOfHTML(): void {
-    document.documentElement.style.colorScheme = this.colorScheme;
-  }
-
 }
