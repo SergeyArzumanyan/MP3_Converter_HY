@@ -8,9 +8,9 @@
   .content {
     height: 100%;
     padding: 25px 10px;
+
+    @media (max-width: 900px) {
+      margin-top: 150px;
+    }
   }
-}
-
-@media (max-width: 900px) {
-
 }
