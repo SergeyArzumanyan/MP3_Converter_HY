@@ -52,3 +52,8 @@ body {
 fieldset {
   border: none;
 }
+
+.no-select {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
