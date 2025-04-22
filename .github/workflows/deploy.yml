@@ -1,8 +1,5 @@
 name: Deploying To Firebase Hosting
 
-env:
-  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
 on:
   push:
     branches:
@@ -20,11 +17,8 @@ jobs:
       - name: Building The Project
         run: npm run build:prod
 
-      - name: Installing Firebase
-        run: npm install -g firebase
-
       - name: Installing Firebase Tools
         run: npm install -g firebase-tools
 
       - name: Deploying To Firebase Hosting
-        run: firebase deploy --project mp3-converter-hy --token=${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --project mp3-converter-hy --token="${{ secrets.FIREBASE_TOKEN }}"
