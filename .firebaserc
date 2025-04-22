@@ -1,15 +1,5 @@
 {
   "projects": {
-    "default": "mp3-converter-hy",
-    "prod": "mp3-converter-hy"
-  },
-  "targets": {
-    "mp3-converter-hy": {
-      "hosting": {
-        "mp3-converter-hy": [
-          "mp3-converter-hy"
-        ]
-      }
-    }
+    "default": "mp3-converter-hy"
   }
 }
