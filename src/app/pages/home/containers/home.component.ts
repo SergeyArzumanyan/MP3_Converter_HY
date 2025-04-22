@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { take } from "rxjs";
+import { HttpErrorResponse } from "@angular/common/http";
+
+import { MessageService } from "primeng/api";
 
 import { IUrlForm, IConvertedVideo } from "@Core/interfaces";
 import { HomeService } from "@Core/services";
@@ -24,7 +27,10 @@ export class HomeComponent {
 
   public convertedVideo: IConvertedVideo | null = null;
 
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private messageService: MessageService,
+  ) {}
 
   public convertToMP3(): void {
     this.pending = true;
@@ -35,15 +41,33 @@ export class HomeComponent {
       this.homeService.convertToMP3(videoID ?  videoID : '')
         .pipe(take(1))
         .subscribe({
-          next: (res) => {
+          next: (res: IConvertedVideo) => {
+            if (res.duration >= 7200) {
+              this.messageService.add({severity: 'error', summary: 'Video is longer than 2 hours'});
+              this.reset();
+              this.pending = false;
+              return;
+            }
+
+            if ((res as any).code === 403) {
+              this.messageService.add({severity: 'error', summary: 'Code 403, please try again later'});
+              this.reset();
+              this.pending = false;
+              return;
+            }
+
+            if (res.progress !== 100) {
+              this.messageService.add({severity: 'info', summary: `Video is still processing, ${res.progress}% processed, please try again`});
+              this.reset();
+              this.pending = false;
+              return;
+            }
+
             this.pending = false;
             this.convertedVideo = res;
-
-            if (res.code === 403) {
-              this.reset();
-            }
           },
-          error: (err) => {
+          error: (e: HttpErrorResponse) => {
+            console.error('Error when converting to mp3 --', e);
             this.pending = false;
           }
         });
@@ -55,7 +79,11 @@ export class HomeComponent {
 
   public downloadMP3(): void {
     if (this.convertedVideo!.link.length > 0) {
-      window.open(this.convertedVideo!.link, '_self');
+      const anchor: HTMLAnchorElement = document.createElement('a');
+      anchor.href = this.convertedVideo!.link;
+      anchor.download = '';
+      anchor.click();
+      anchor.remove();
     }
   }
 
