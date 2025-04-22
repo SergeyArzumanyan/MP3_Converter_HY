@@ -6,8 +6,8 @@
   "targets": {
     "mp3-converter-hy": {
       "hosting": {
-        "mp3-converter-prod": [
-          "mp3-converter-prod"
+        "mp3-converter-hy": [
+          "mp3-converter-hy"
         ]
       }
     }
