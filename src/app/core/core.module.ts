@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HeaderComponent } from './components';
+import { HeaderComponent, HotKeysHintComponent } from './components';
 import { SharedModule } from "@Shared/shared.module";
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    HotKeysHintComponent,
   ],
-  exports: [
-    HeaderComponent,
-  ],
+    exports: [
+        HeaderComponent,
+        HotKeysHintComponent,
+    ],
     imports: [
         CommonModule,
         SharedModule,

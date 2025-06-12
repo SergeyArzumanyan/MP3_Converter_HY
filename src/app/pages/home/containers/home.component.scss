@@ -33,6 +33,12 @@
     width: 100%;
     height: 40px;
     padding-inline-end: 0;
+
+    &:focus,
+    &:focus-visible {
+      box-shadow: none !important;
+      border: 1px solid var(--accent) !important;
+    }
   }
 
   .url-input-dirty {

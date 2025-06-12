@@ -10,6 +10,8 @@
         <section class="w-full flex gap-2 justify-content-center align-items-center">
           <div class="url-input-wrapper">
             <input type="text"
+                   readonly
+                   (click)="pasteTheLink()"
                    [placeholder]="'UrlInputPlaceholder' | translate"
                    pInputText
                    formControlName="url"
@@ -96,5 +98,17 @@
         </ng-container>
       </ng-template>
     </section>
+
+    <ng-container *ngIf="!layoutService.isMobile()">
+      <app-hot-keys-hint
+        [shortcuts]="[
+        { keys: [HotKey.Ctrl, HotKey.V], action: 'To Paste' },
+        { keys: [HotKey.Shift, HotKey.C], action: 'To Convert' },
+        { keys: [HotKey.Shift, HotKey.D], action: 'To Download' },
+        { keys: [HotKey.Shift, HotKey.R], action: 'To Reset' },
+      ]"
+      ></app-hot-keys-hint>
+    </ng-container>
+
   </main>
 </section>

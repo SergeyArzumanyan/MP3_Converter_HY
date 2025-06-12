@@ -7,5 +7,5 @@
   "EmptyInputErrorMessage": "Enter The Link",
   "InvalidIURL": "Incorrect Link Format",
   "Loading": "Loading",
-  "UrlInputPlaceholder": "Place Link Here..."
+  "UrlInputPlaceholder": "Click to paste the link"
 }

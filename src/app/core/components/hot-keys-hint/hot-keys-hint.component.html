@@ -1,0 +1,13 @@
+<div class="hotkeys-hint">
+  <code class="hint" *ngFor="let shortcut of shortcuts">
+    <div class="keys">
+      <ng-container *ngFor="let key of shortcut.keys; let last = last">
+        <span class="key">{{ key | titlecase }}</span>
+        <span *ngIf="!last" class="plus">+</span>
+      </ng-container>
+    </div>
+    <span class="action">
+      {{ shortcut.action }}
+    </span>
+  </code>
+</div>
