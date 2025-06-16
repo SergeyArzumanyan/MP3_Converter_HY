@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { finalize, take } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -16,7 +16,7 @@ import { HomeService, HotKeysService, LayoutService } from "@Core/services";
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   urlForm: FormGroup<IUrlForm> = new FormGroup<IUrlForm>({
     url: new FormControl<string | null>(null, [
       Validators.required,
@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
 
   pending: boolean = false;
   convertedVideo: IConvertedVideo | null = null;
+
+  private unregisterFunctions: Array<() => void> = [];
 
   constructor(
     private homeService: HomeService,
@@ -42,34 +44,51 @@ export class HomeComponent implements OnInit {
     this.listenToHotKeys();
   }
 
+  ngOnDestroy(): void {
+    this.unregisterFunctions.forEach(unregister => unregister());
+    this.unregisterFunctions = [];
+  }
+
   private listenToHotKeys(): void {
-    this.hotKeysService.registerHotKey(
-      [HotKey.Shift, HotKey.C],
-      () => this.convertToMP3(),
+    this.unregisterFunctions.push(
+      this.hotKeysService.registerHotKey(
+        ['shift', 'c'],
+        () => this.convertToMP3(),
+      )
     );
 
-    this.hotKeysService.registerHotKey(
-      [HotKey.Shift, HotKey.D],
-      () => this.downloadMP3(),
+    this.unregisterFunctions.push(
+      this.hotKeysService.registerHotKey(
+        ['shift', 'd'],
+        () => this.downloadMP3(),
+      )
     );
 
-    this.hotKeysService.registerHotKey(
-      [HotKey.Shift, HotKey.R],
-      () => this.reset(),
+    this.unregisterFunctions.push(
+      this.hotKeysService.registerHotKey(
+        ['shift', 'r'],
+        () => this.reset(),
+      )
     );
 
-    this.hotKeysService.registerHotKey(
-      [HotKey.Meta, HotKey.V],
-      () => this.pasteTheLink(),
+    this.unregisterFunctions.push(
+      this.hotKeysService.registerHotKey(
+        ['meta', 'v'],
+        () => this.pasteTheLink(),
+      )
     );
 
-    this.hotKeysService.registerHotKey(
-      [HotKey.Ctrl, HotKey.V],
-      () => this.pasteTheLink(),
+    this.unregisterFunctions.push(
+      this.hotKeysService.registerHotKey(
+        ['ctrl', 'v'],
+        () => this.pasteTheLink(),
+      )
     );
   }
 
   convertToMP3(): void {
+    console.log('Converting to MP3...');
+
     if (!this.urlForm.controls.url.value || this.urlForm.invalid) {
       this.urlForm.markAllAsTouched();
       this.pending = false;
@@ -149,6 +168,9 @@ export class HomeComponent implements OnInit {
       .then((copiedLink: string) => {
         this.urlForm.controls.url.setValue(copiedLink);
         this.cdr.markForCheck();
+      })
+      .catch((error) => {
+        console.warn('Failed to read clipboard:', error);
       });
   }
 }
